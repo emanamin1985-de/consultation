@@ -1,0 +1,1194 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>استشارات استراتيجيات التسويق ونمو الأعمال</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <style>
+        /* ═══════════════════════════════════════════════
+           GLOBAL VARIABLES — EDIT THESE TO CHANGE COLORS
+           ═══════════════════════════════════════════════ */
+        :root {
+            --primary: #1a5f7a;        /* Main brand color */
+            --primary-dark: #134b61;     /* Darker shade */
+            --primary-light: #2d8fb0;    /* Lighter shade */
+            --accent: #e8a838;           /* Accent / CTA color */
+            --accent-hover: #d4962e;     /* Accent hover */
+            --text-dark: #1e293b;        /* Headings */
+            --text-body: #475569;        /* Body text */
+            --text-light: #64748b;       /* Secondary text */
+            --bg-white: #ffffff;
+            --bg-light: #f8fafc;
+            --bg-warm: #fff8f0;
+            --border: #e2e8f0;
+            --shadow-sm: 0 1px 2px rgba(0,0,0,0.04);
+            --shadow-md: 0 4px 12px rgba(0,0,0,0.08);
+            --shadow-lg: 0 12px 40px rgba(0,0,0,0.12);
+            --radius: 16px;
+            --radius-sm: 10px;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        html { scroll-behavior: smooth; }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            color: var(--text-body);
+            line-height: 1.8;
+            background: var(--bg-white);
+            overflow-x: hidden;
+        }
+
+        /* ═══════════════════════════════════════════════
+           ANIMATIONS
+           ═══════════════════════════════════════════════ */
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(40px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(232, 168, 56, 0.4); }
+            50% { box-shadow: 0 0 0 12px rgba(232, 168, 56, 0); }
+        }
+        @keyframes gradientShift {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        @keyframes countUp {
+            from { opacity: 0; transform: scale(0.5); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .animate { opacity: 0; }
+        .animate.visible { animation: fadeInUp 0.8s ease forwards; }
+        .animate-delay-1 { animation-delay: 0.1s; }
+        .animate-delay-2 { animation-delay: 0.2s; }
+        .animate-delay-3 { animation-delay: 0.3s; }
+        .animate-delay-4 { animation-delay: 0.4s; }
+
+        /* ═══════════════════════════════════════════════
+           NAVIGATION
+           ═══════════════════════════════════════════════ */
+        nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 1000;
+            background: rgba(255,255,255,0.92);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--border);
+            transition: var(--transition);
+        }
+        nav.scrolled {
+            box-shadow: var(--shadow-md);
+        }
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            height: 72px;
+        }
+        .logo {
+            font-size: 1.3rem;
+            font-weight: 800;
+            color: var(--primary);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .logo-icon {
+            width: 36px; height: 36px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1rem;
+        }
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+        .nav-links a {
+            text-decoration: none;
+            color: var(--text-dark);
+            font-weight: 600;
+            font-size: 0.95rem;
+            position: relative;
+            transition: var(--transition);
+            padding: 4px 0;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 0; height: 2px;
+            background: var(--accent);
+            transition: var(--transition);
+            border-radius: 2px;
+        }
+        .nav-links a:hover { color: var(--primary); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-cta {
+            background: linear-gradient(135deg, var(--accent), #f0b84a);
+            color: white !important;
+            padding: 10px 24px !important;
+            border-radius: 50px;
+            font-weight: 700;
+            box-shadow: 0 4px 15px rgba(232, 168, 56, 0.35);
+            transition: var(--transition);
+        }
+        .nav-cta::after { display: none !important; }
+        .nav-cta:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(232, 168, 56, 0.45);
+        }
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--primary);
+            cursor: pointer;
+        }
+
+        /* ═══════════════════════════════════════════════
+           HERO SECTION
+           ═══════════════════════════════════════════════ */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e8f4f8 30%, #fff8f0 70%, #fef5e7 100%);
+            background-size: 200% 200%;
+            animation: gradientShift 15s ease infinite;
+            padding-top: 72px;
+            overflow: hidden;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -50%; right: -20%;
+            width: 800px; height: 800px;
+            background: radial-gradient(circle, rgba(26, 95, 122, 0.06) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%; left: -10%;
+            width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(232, 168, 56, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 8s ease-in-out infinite reverse;
+        }
+        .hero-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 24px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(26, 95, 122, 0.08);
+            color: var(--primary);
+            padding: 8px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s ease forwards;
+        }
+        .hero-badge .dot {
+            width: 8px; height: 8px;
+            background: var(--accent);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+        .hero h1 {
+            font-size: 3.2rem;
+            font-weight: 900;
+            color: var(--text-dark);
+            line-height: 1.3;
+            margin-bottom: 24px;
+            animation: fadeInUp 0.6s 0.1s ease forwards;
+            opacity: 0;
+        }
+        .hero h1 span {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-light);
+            margin-bottom: 32px;
+            max-width: 500px;
+            animation: fadeInUp 0.6s 0.2s ease forwards;
+            opacity: 0;
+        }
+        .hero-questions {
+            background: rgba(255,255,255,0.7);
+            backdrop-filter: blur(10px);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 24px;
+            margin-bottom: 32px;
+            animation: fadeInUp 0.6s 0.3s ease forwards;
+            opacity: 0;
+        }
+        .hero-questions p {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 12px;
+            font-size: 1rem;
+            color: var(--text-dark);
+        }
+        .hero-questions p:last-child { margin-bottom: 0; }
+        .hero-questions .q-icon {
+            color: var(--accent);
+            font-size: 1.2rem;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .hero-cta-group {
+            display: flex;
+            gap: 16px;
+            flex-wrap: wrap;
+            animation: fadeInUp 0.6s 0.4s ease forwards;
+            opacity: 0;
+        }
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), #f0b84a);
+            color: white;
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            box-shadow: 0 6px 25px rgba(232, 168, 56, 0.4);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            border: none;
+            cursor: pointer;
+            animation: pulse 3s infinite;
+        }
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 35px rgba(232, 168, 56, 0.5);
+        }
+        .btn-secondary {
+            background: transparent;
+            color: var(--primary);
+            padding: 16px 36px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            font-size: 1.05rem;
+            border: 2px solid var(--primary);
+            transition: var(--transition);
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-secondary:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        /* Hero Visual */
+        .hero-visual {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .hero-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px;
+            box-shadow: var(--shadow-lg);
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+            animation: fadeInUp 0.8s 0.3s ease forwards;
+            opacity: 0;
+        }
+        .hero-card::before {
+            content: '';
+            position: absolute;
+            top: -20px; right: -20px;
+            width: 100%; height: 100%;
+            border: 2px solid var(--accent);
+            border-radius: var(--radius);
+            z-index: -1;
+        }
+        .stat-row {
+            display: flex;
+            gap: 24px;
+            margin-bottom: 28px;
+        }
+        .stat-item {
+            text-align: center;
+        }
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--primary);
+            line-height: 1;
+        }
+        .stat-label {
+            font-size: 0.8rem;
+            color: var(--text-light);
+            margin-top: 4px;
+        }
+        .hero-card h3 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            font-weight: 700;
+        }
+        .hero-card p {
+            font-size: 0.95rem;
+            color: var(--text-body);
+            line-height: 1.7;
+        }
+        .hero-card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 20px;
+        }
+        .tag {
+            background: var(--bg-light);
+            color: var(--primary);
+            padding: 6px 14px;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SECTION STYLES
+           ═══════════════════════════════════════════════ */
+        section {
+            padding: 100px 24px;
+            position: relative;
+        }
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .section-header {
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+        .section-label {
+            display: inline-block;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            padding: 6px 20px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            margin-bottom: 16px;
+        }
+        .section-header h2 {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 16px;
+            line-height: 1.3;
+        }
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+        }
+
+        /* ═══════════════════════════════════════════════
+           ABOUT SECTION
+           ═══════════════════════════════════════════════ */
+        .about {
+            background: var(--bg-white);
+        }
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-image {
+            position: relative;
+        }
+        .about-image-frame {
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius);
+            padding: 8px;
+            position: relative;
+        }
+        .about-image-inner {
+            background: var(--bg-light);
+            border-radius: calc(var(--radius) - 4px);
+            min-height: 400px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px;
+            text-align: center;
+        }
+        .about-avatar {
+            width: 120px; height: 120px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+            margin-bottom: 24px;
+            box-shadow: 0 8px 30px rgba(26, 95, 122, 0.3);
+        }
+        .about-image-inner h4 {
+            font-size: 1.4rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+        }
+        .about-image-inner p {
+            color: var(--text-light);
+            font-size: 0.95rem;
+        }
+        .experience-badge {
+            position: absolute;
+            bottom: -20px; left: -20px;
+            background: white;
+            border-radius: var(--radius-sm);
+            padding: 20px 28px;
+            box-shadow: var(--shadow-lg);
+            text-align: center;
+        }
+        .experience-badge .num {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+        }
+        .experience-badge .text {
+            font-size: 0.85rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+        .about-content h3 {
+            font-size: 1.8rem;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+            font-weight: 800;
+        }
+        .about-content > p {
+            font-size: 1.05rem;
+            margin-bottom: 24px;
+            color: var(--text-body);
+        }
+        .sectors-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            margin-bottom: 28px;
+        }
+        .sector-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 16px;
+            background: var(--bg-light);
+            border-radius: var(--radius-sm);
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: var(--text-dark);
+            transition: var(--transition);
+        }
+        .sector-item:hover {
+            background: var(--primary);
+            color: white;
+            transform: translateX(-5px);
+        }
+        .sector-item .icon {
+            width: 32px; height: 32px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+        .sector-item:hover .icon {
+            background: var(--accent);
+        }
+        .about-content .highlight-box {
+            background: linear-gradient(135deg, var(--bg-warm), #fff);
+            border-right: 4px solid var(--accent);
+            padding: 20px 24px;
+            border-radius: var(--radius-sm);
+            font-size: 1rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SERVICES SECTION
+           ═══════════════════════════════════════════════ */
+        .services {
+            background: var(--bg-light);
+        }
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 28px;
+        }
+        .service-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 40px 32px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            position: relative;
+            overflow: hidden;
+            border: 1px solid var(--border);
+        }
+        .service-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary), var(--accent));
+            transform: scaleX(0);
+            transition: var(--transition);
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-lg);
+            border-color: transparent;
+        }
+        .service-card:hover::before {
+            transform: scaleX(1);
+        }
+        .service-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: rgba(26, 95, 122, 0.08);
+            line-height: 1;
+            position: absolute;
+            top: 20px; left: 24px;
+        }
+        .service-icon {
+            width: 64px; height: 64px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: var(--radius-sm);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-bottom: 24px;
+            position: relative;
+            z-index: 1;
+        }
+        .service-card h3 {
+            font-size: 1.25rem;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            font-weight: 800;
+        }
+        .service-card .service-tagline {
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 0.9rem;
+            margin-bottom: 16px;
+            display: block;
+        }
+        .service-card p {
+            font-size: 0.95rem;
+            margin-bottom: 20px;
+            color: var(--text-body);
+        }
+        .service-features {
+            list-style: none;
+        }
+        .service-features li {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+            color: var(--text-body);
+        }
+        .service-features li .check {
+            color: var(--accent);
+            font-weight: 900;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+        .service-result {
+            margin-top: 20px;
+            padding: 16px;
+            background: var(--bg-warm);
+            border-radius: var(--radius-sm);
+            border-right: 3px solid var(--accent);
+        }
+        .service-result strong {
+            color: var(--primary);
+            font-size: 0.85rem;
+            display: block;
+            margin-bottom: 4px;
+        }
+        .service-result p {
+            margin: 0;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            font-weight: 600;
+        }
+
+        /* ═══════════════════════════════════════════════
+           WHY ME SECTION
+           ═══════════════════════════════════════════════ */
+        .why-me {
+            background: var(--bg-white);
+        }
+        .why-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 24px;
+        }
+        .why-card {
+            background: white;
+            border-radius: var(--radius);
+            padding: 32px 24px;
+            text-align: center;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid var(--border);
+            transition: var(--transition);
+            position: relative;
+        }
+        .why-card:hover {
+            transform: translateY(-6px);
+            box-shadow: var(--shadow-lg);
+            border-color: var(--primary);
+        }
+        .why-card .why-icon {
+            width: 60px; height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.4rem;
+            margin: 0 auto 16px;
+            transition: var(--transition);
+        }
+        .why-card:hover .why-icon {
+            background: linear-gradient(135deg, var(--accent), #f0b84a);
+            transform: rotate(10deg) scale(1.1);
+        }
+        .why-card h4 {
+            font-size: 1rem;
+            color: var(--text-dark);
+            font-weight: 700;
+            line-height: 1.5;
+        }
+
+        /* ═══════════════════════════════════════════════
+           CLIENTS SECTION
+           ═══════════════════════════════════════════════ */
+        .clients {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 80px 24px;
+        }
+        .clients .section-header h2,
+        .clients .section-header p {
+            color: white;
+        }
+        .clients-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .client-tag {
+            background: rgba(255,255,255,0.12);
+            backdrop-filter: blur(10px);
+            padding: 14px 28px;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: 1px solid rgba(255,255,255,0.2);
+            transition: var(--transition);
+        }
+        .client-tag:hover {
+            background: rgba(255,255,255,0.25);
+            transform: translateY(-3px);
+        }
+
+        /* ═══════════════════════════════════════════════
+           CTA SECTION
+           ═══════════════════════════════════════════════ */
+        .cta-section {
+            background: linear-gradient(135deg, var(--bg-warm), #fff);
+            text-align: center;
+        }
+        .cta-section h2 {
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--text-dark);
+            margin-bottom: 20px;
+        }
+        .cta-section p {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            max-width: 600px;
+            margin: 0 auto 36px;
+        }
+        .cta-section .btn-primary {
+            font-size: 1.15rem;
+            padding: 18px 48px;
+        }
+
+        /* ═══════════════════════════════════════════════
+           FOOTER
+           ═══════════════════════════════════════════════ */
+        footer {
+            background: var(--text-dark);
+            color: rgba(255,255,255,0.7);
+            padding: 40px 24px;
+            text-align: center;
+        }
+        footer p {
+            font-size: 0.9rem;
+        }
+        footer a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        /* ═══════════════════════════════════════════════
+           SCROLL TO TOP
+           ═══════════════════════════════════════════════ */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px; left: 30px;
+            width: 50px; height: 50px;
+            background: linear-gradient(135deg, var(--primary), var(--primary-light));
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.2rem;
+            cursor: pointer;
+            box-shadow: var(--shadow-md);
+            opacity: 0;
+            visibility: hidden;
+            transition: var(--transition);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .scroll-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        .scroll-top:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-lg);
+        }
+
+        /* ═══════════════════════════════════════════════
+           RESPONSIVE
+           ═══════════════════════════════════════════════ */
+        @media (max-width: 1024px) {
+            .hero-container { grid-template-columns: 1fr; text-align: center; }
+            .hero h1 { font-size: 2.4rem; }
+            .hero-subtitle { margin: 0 auto 32px; }
+            .hero-questions { text-align: right; }
+            .hero-cta-group { justify-content: center; }
+            .hero-visual { order: -1; }
+            .hero-card { margin: 0 auto; }
+            .about-grid { grid-template-columns: 1fr; }
+            .services-grid { grid-template-columns: 1fr; }
+            .why-grid { grid-template-columns: repeat(2, 1fr); }
+        }
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .mobile-menu-btn { display: block; }
+            .hero h1 { font-size: 1.9rem; }
+            .section-header h2 { font-size: 1.7rem; }
+            .why-grid { grid-template-columns: 1fr; }
+            .sectors-grid { grid-template-columns: 1fr; }
+            .stat-row { justify-content: center; }
+            section { padding: 60px 20px; }
+            .hero-card { padding: 28px; }
+            .experience-badge { left: 10px; bottom: -10px; padding: 14px 20px; }
+            .experience-badge .num { font-size: 1.8rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ═══════════════════════════════════════════════
+         NAVIGATION
+         ═══════════════════════════════════════════════ -->
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">
+                <div class="logo-icon">📈</div>
+                استشارات التسويق
+            </a>
+            <ul class="nav-links">
+                <li><a href="#about">عني</a></li>
+                <li><a href="#services">الخدمات</a></li>
+                <li><a href="#why">لماذا أنا</a></li>
+                <li><a href="#clients">من نخدم</a></li>
+                <li><a href="#contact" class="nav-cta">احجز جلسة</a></li>
+            </ul>
+            <button class="mobile-menu-btn" onclick="document.querySelector('.nav-links').classList.toggle('mobile-open')">☰</button>
+        </div>
+    </nav>
+
+    <!-- ═══════════════════════════════════════════════
+         HERO SECTION
+         ═══════════════════════════════════════════════ -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    استشارات استراتيجيات التسويق ونمو الأعمال
+                </div>
+                <h1>
+                    نحول التسويق من <span>تكلفة</span> إلى محرك حقيقي للنمو
+                </h1>
+                <p class="hero-subtitle">
+                    أساعد الشركات الصغيرة والمتوسطة على بناء استراتيجيات تسويقية عملية، تحسين الأداء، وتحقيق نمو قابل للقياس من خلال الاستراتيجية، البيانات، والذكاء الاصطناعي.
+                </p>
+                <div class="hero-questions">
+                    <p><span class="q-icon">❓</span> هل تستثمر في التسويق ولكن النتائج غير واضحة؟</p>
+                    <p><span class="q-icon">❓</span> هل لديك فريق تسويق أو تتعامل مع وكالة، ولكن تحتاج إلى رؤية استراتيجية وتوجيه يساعدك على اتخاذ قرارات أفضل؟</p>
+                </div>
+                <div class="hero-cta-group">
+                    <a href="#contact" class="btn-primary">📅 احجز جلسة استشارية</a>
+                    <a href="#services" class="btn-secondary">تعرف على الخدمات ↓</a>
+                </div>
+            </div>
+            <div class="hero-visual">
+                <div class="hero-card">
+                    <div class="stat-row">
+                        <div class="stat-item">
+                            <div class="stat-number">10+</div>
+                            <div class="stat-label">سنوات خبرة</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">∞</div>
+                            <div class="stat-label">قطاعات متنوعة</div>
+                        </div>
+                        <div class="stat-item">
+                            <div class="stat-number">📊</div>
+                            <div class="stat-label">قرارات مبنية على البيانات</div>
+                        </div>
+                    </div>
+                    <h3>🎯 استراتيجية مبنية على البيانات وليس التخمين</h3>
+                    <p>الجمع بين الخبرة العملية في التسويق، التفكير الاستراتيجي، تحليل السوق، وفهم سلوك العملاء.</p>
+                    <div class="hero-card-tags">
+                        <span class="tag">🤖 الذكاء الاصطناعي</span>
+                        <span class="tag">📈 ROI</span>
+                        <span class="tag">🎯 استراتيجية</span>
+                        <span class="tag">📊 بيانات</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         ABOUT SECTION
+         ═══════════════════════════════════════════════ -->
+    <section class="about" id="about">
+        <div class="section-container">
+            <div class="section-header animate">
+                <span class="section-label">عني</span>
+                <h2>خبرة تسويقية تتجاوز العشر سنوات</h2>
+            </div>
+            <div class="about-grid">
+                <div class="about-image animate">
+                    <div class="about-image-frame">
+                        <div class="about-image-inner">
+                            <div class="about-avatar">👤</div>
+                            <h4>مستشارة استراتيجيات التسويق</h4>
+                            <p>خبرة في أسواق الخليج والسودان</p>
+                        </div>
+                    </div>
+                    <div class="experience-badge">
+                        <div class="num">10+</div>
+                        <div class="text">سنوات خبرة</div>
+                    </div>
+                </div>
+                <div class="about-content animate">
+                    <h3>أجمع بين الخبرة العملية والتفكير الاستراتيجي</h3>
+                    <p>عملت خلال أكثر من 10 سنوات مع شركات في قطاعات متعددة، أساعد الشركات على اتخاذ قرارات تسويقية أكثر ذكاءً وتحقيق نتائج أفضل.</p>
+                    <div class="sectors-grid">
+                        <div class="sector-item"><span class="icon">🛒</span> السلع الاستهلاكية (FMCG)</div>
+                        <div class="sector-item"><span class="icon">💄</span> الجمال والعناية الشخصية</div>
+                        <div class="sector-item"><span class="icon">⚡</span> الطاقة والتجزئة</div>
+                        <div class="sector-item"><span class="icon">✈️</span> السفر</div>
+                        <div class="sector-item"><span class="icon">🏠</span> العقارات</div>
+                        <div class="sector-item"><span class="icon">🎓</span> التعليم</div>
+                        <div class="sector-item"><span class="icon">🛎️</span> الخدمات</div>
+                    </div>
+                    <div class="highlight-box">
+                        💡 أجمع بين الخبرة العملية في التسويق، التفكير الاستراتيجي، تحليل السوق، وفهم سلوك العملاء
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         SERVICES SECTION
+         ═══════════════════════════════════════════════ -->
+    <section class="services" id="services">
+        <div class="section-container">
+            <div class="section-header animate">
+                <span class="section-label">خدماتنا</span>
+                <h2>حلول تسويقية مصممة لنمو أعمالك</h2>
+                <p>ثلاث خدمات رئيسية تغطي احتياجاتك التسويقية من الاستراتيجية إلى التنفيذ</p>
+            </div>
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card animate">
+                    <span class="service-number">01</span>
+                    <div class="service-icon">🗺️</div>
+                    <h3>استشارات استراتيجيات التسويق</h3>
+                    <span class="service-tagline">بناء خارطة طريق واضحة لتحقيق النمو</span>
+                    <p>إذا كانت شركتك بحاجة إلى رؤية أوضح حول كيفية تطوير التسويق، نساعدك في بناء استراتيجية مرتبطة بأهداف العمل والسوق.</p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> تحليل الوضع الحالي للسوق والبراند</li>
+                        <li><span class="check">✓</span> تحديد الجمهور والعملاء المستهدفين</li>
+                        <li><span class="check">✓</span> تحليل المنافسين والفرص</li>
+                        <li><span class="check">✓</span> اختيار القنوات التسويقية المناسبة</li>
+                        <li><span class="check">✓</span> تحديد الأولويات وخطة العمل</li>
+                    </ul>
+                    <div class="service-result">
+                        <strong>النتيجة:</strong>
+                        <p>استراتيجية واضحة تساعدك على استثمار جهودك وميزانيتك التسويقية بشكل أكثر فعالية.</p>
+                    </div>
+                </div>
+
+                <!-- Service 2 -->
+                <div class="service-card animate">
+                    <span class="service-number">02</span>
+                    <div class="service-icon">🔍</div>
+                    <h3>التدقيق التسويقي (Marketing Audit)</h3>
+                    <span class="service-tagline">اكتشف ما يعمل وما يحتاج إلى تحسين</span>
+                    <p>قبل زيادة الاستثمار في التسويق، تحتاج إلى معرفة الأداء الحالي والفجوات الموجودة. نقوم بمراجعة شاملة لأنشطتك التسويقية.</p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> مراجعة الحضور الرقمي</li>
+                        <li><span class="check">✓</span> تقييم استراتيجية المحتوى</li>
+                        <li><span class="check">✓</span> تحليل المنافسين</li>
+                        <li><span class="check">✓</span> مراجعة الحملات التسويقية</li>
+                        <li><span class="check">✓</span> تقييم مؤشرات الأداء (KPIs)</li>
+                        <li><span class="check">✓</span> تقرير توصيات عملي</li>
+                    </ul>
+                    <div class="service-result">
+                        <strong>النتيجة:</strong>
+                        <p>رؤية واضحة تساعدك على معرفة أين تستثمر جهودك وما الخطوات القادمة.</p>
+                    </div>
+                </div>
+
+                <!-- Service 3 -->
+                <div class="service-card animate">
+                    <span class="service-number">03</span>
+                    <div class="service-icon">🤝</div>
+                    <h3>الاستشارة التسويقية الشهرية</h3>
+                    <span class="service-tagline">شريكك الاستراتيجي في التسويق</span>
+                    <p>للشركات التي تحتاج إلى دعم تسويقي مستمر دون الحاجة إلى توظيف مدير تسويق بدوام كامل.</p>
+                    <ul class="service-features">
+                        <li><span class="check">✓</span> اجتماعات استراتيجية دورية</li>
+                        <li><span class="check">✓</span> مراجعة الأداء التسويقي</li>
+                        <li><span class="check">✓</span> تحليل النتائج واتخاذ القرارات</li>
+                        <li><span class="check">✓</span> توجيه فريق التسويق أو الوكالة</li>
+                        <li><span class="check">✓</span> توصيات لتحسين الأداء والنمو</li>
+                        <li><span class="check">✓</span> دعم استخدام الذكاء الاصطناعي في التسويق</li>
+                    </ul>
+                    <div class="service-result">
+                        <strong>النتيجة:</strong>
+                        <p>قرارات تسويقية أكثر ذكاءً، تركيز أفضل للفريق، ونمو مستدام.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         WHY ME SECTION
+         ═══════════════════════════════════════════════ -->
+    <section class="why-me" id="why">
+        <div class="section-container">
+            <div class="section-header animate">
+                <span class="section-label">لماذا العمل معي؟</span>
+                <h2>ما يميز تعاوننا معاً</h2>
+            </div>
+            <div class="why-grid">
+                <div class="why-card animate">
+                    <div class="why-icon">⏳</div>
+                    <h4>أكثر من 10 سنوات خبرة في التسويق</h4>
+                </div>
+                <div class="why-card animate">
+                    <div class="why-icon">🌍</div>
+                    <h4>خبرة في أسواق الخليج والسودان</h4>
+                </div>
+                <div class="why-card animate">
+                    <div class="why-icon">🏭</div>
+                    <h4>خبرة متعددة القطاعات</h4>
+                </div>
+                <div class="why-card animate">
+                    <div class="why-icon">⚙️</div>
+                    <h4>الجمع بين الاستراتيجية والتطبيق العملي</h4>
+                </div>
+                <div class="why-card animate">
+                    <div class="why-icon">📊</div>
+                    <h4>قرارات مبنية على البيانات وليس التخمين</h4>
+                </div>
+                <div class="why-card animate">
+                    <div class="why-icon">🤖</div>
+                    <h4>استخدام الذكاء الاصطناعي لتحسين كفاءة التسويق</h4>
+                </div>
+                <div class="why-card animate">
+                    <div class="why-icon">🎯</div>
+                    <h4>تركيز على النتائج والعائد على الاستثمار (ROI)</h4>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         CLIENTS SECTION
+         ═══════════════════════════════════════════════ -->
+    <section class="clients" id="clients">
+        <div class="section-container">
+            <div class="section-header animate">
+                <span class="section-label" style="background: rgba(255,255,255,0.2);">من نخدم؟</span>
+                <h2>نخدم مجموعة واسعة من الشركات والعلامات التجارية</h2>
+            </div>
+            <div class="clients-grid animate">
+                <span class="client-tag">🏢 الشركات الصغيرة والمتوسطة</span>
+                <span class="client-tag">🏷️ العلامات التجارية الناشئة والقائمة</span>
+                <span class="client-tag">🛒 شركات التجارة الإلكترونية</span>
+                <span class="client-tag">💄 شركات الجمال والعناية الشخصية</span>
+                <span class="client-tag">🛎️ شركات الخدمات</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         CTA / CONTACT SECTION
+         ═══════════════════════════════════════════════ -->
+    <section class="cta-section" id="contact">
+        <div class="section-container">
+            <div class="animate">
+                <h2>لنعمل معًا على تطوير تسويق شركتك</h2>
+                <p>إذا كنت تبحث عن رؤية أوضح، استراتيجية عملية، وقرارات تسويقية تساعد شركتك على النمو، يسعدني التواصل معك.</p>
+                <a href="mailto:your-email@example.com" class="btn-primary">📅 احجز جلسة استشارية لمناقشة فرص النمو في شركتك</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ═══════════════════════════════════════════════
+         FOOTER
+         ═══════════════════════════════════════════════ -->
+    <footer>
+        <p>© 2026 استشارات استراتيجيات التسويق ونمو الأعمال — جميع الحقوق محفوظة</p>
+    </footer>
+
+    <!-- ═══════════════════════════════════════════════
+         SCROLL TO TOP
+         ═══════════════════════════════════════════════ -->
+    <button class="scroll-top" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
+
+    <!-- ═══════════════════════════════════════════════
+         JAVASCRIPT
+         ═══════════════════════════════════════════════ -->
+    <script>
+        // Scroll animations (Intersection Observer)
+        const observerOptions = { threshold: 0.1, rootMargin: '0px 0px -50px 0px' };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        document.querySelectorAll('.animate').forEach(el => observer.observe(el));
+
+        // Navbar scroll effect
+        const navbar = document.getElementById('navbar');
+        const scrollTopBtn = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('scrolled');
+                scrollTopBtn.classList.add('visible');
+            } else {
+                navbar.classList.remove('scrolled');
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        // Smooth scroll for nav links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
